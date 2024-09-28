@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.crater.craterlogin.dao.db.mapper.UserDataDaoMapper">
+    <select id="select" parameterType="com.crater.craterlogin.bean.entity.db.UserData" resultMap="userDataResultMap">
+        SELECT * FROM USER_DATA
+        <where>
+            <if test="userName != null">AND USER_NAME = #{userName}</if>
+            <if test="password != null">AND PASSWORD = #{password}</if>
+            <if test="isActive != null">AND IS_ACTIVE = #{isActive}</if>
+            <if test="createTime != null">AND CREATE_TIME = #{createTime}</if>
+            <if test="createUser != null">AND CREATE_USER = #{createUser}</if>
+            <if test="updateTime != null">AND UPDATE_TIME = #{updateTime}</if>
+            <if test="updateUser != null">AND UPDATE_USER = #{updateUser}</if>
+        </where>
+    </select>
+
+    <resultMap id="userDataResultMap" type="com.crater.craterlogin.bean.entity.db.UserData">
+        <id property="userName" column="USER_NAME"/>
+        <result property="password" column="PASSWORD"/>
+        <result property="isActive" column="IS_ACTIVE"/>
+        <result property="createTime" column="CREATE_TIME"/>
+        <result property="createUser" column="CREATE_USER"/>
+        <result property="updateTime" column="UPDATE_TIME"/>
+        <result property="updateUser" column="UPDATE_USER"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.crater.craterlogin.bean.entity.db.UserData">
+        INSERT INTO USER_DATA(USER_NAME, PASSWORD, IS_ACTIVE, CREATE_TIME, CREATE_USER, UPDATE_TIME, UPDATE_USER)
+        VALUES (#{userName}, #{password}, #{isActive}, #{createTime}, #{createUser}, #{updateTime}, #{updateUser})
+    </insert>
+
+    <update id="update" parameterType="com.crater.craterlogin.bean.entity.db.UserData">
+        UPDATE USER_DATA
+        <set>
+            <if test="userName != null">USER_NAME = #{userName},</if>
+            <if test="password != null">PASSWORD = #{password},</if>
+            <if test="isActive != null">IS_ACTIVE = #{isActive},</if>
+            <if test="createTime != null">CREATE_TIME = #{createTime},</if>
+            <if test="createUser != null">CREATE_USER = #{createUser},</if>
+            <if test="updateTime != null">UPDATE_TIME = #{updateTime},</if>
+            <if test="updateUser != null">UPDATE_USER = #{updateUser},</if>
+        </set>
+        WHERE USER_NAME = #{userName}
+    </update>
+</mapper>

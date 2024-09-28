@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: crater-login
+  profiles:
+    active: dev
+server:
+  address: 0.0.0.0
+  port: 8080
+  servlet:
+    context-path: /login
+springdoc:
+  packages-to-scan: com.crater.craterlogin.controller
+  swagger-ui:
+    enabled: true
+    path: open-api
+logging:
+  file:
+    name: "./log/all.log"
+  logback:
+    rollingpolicy:
+      max-file-size: 100MB
+  level:
+    root: info
+    com:
+      crater:
+        accounting:
+          dao:
+            mapper: debug
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+login:
+  tokenTimeout: 60
