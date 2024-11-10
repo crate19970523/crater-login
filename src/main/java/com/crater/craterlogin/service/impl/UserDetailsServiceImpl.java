@@ -16,7 +16,6 @@ import java.util.Optional;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
-
     private UserDataDao userDataDao;
 
     @Override
