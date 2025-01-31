@@ -48,7 +48,7 @@ public class ValidateController {
             errorMessage.add("password is null");
         }
         if (!errorMessage.isEmpty()) {
-            throw new RequestFormatException(errorMessage.toString());
+            throw new RequestFormatException(String.join(", ", errorMessage));
         }
     }
 
