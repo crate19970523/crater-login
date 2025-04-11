@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.crater.craterlogin.dao.db.mapper.InvitationCodeDaoMapper">
+    <select id="select" parameterType="com.crater.craterlogin.bean.entity.db.InvitationCode" resultMap="invitationCodeResultMap">
+        SELECT * FROM INVITATION_CODE
+        <where>
+            <if test="code != null">AND CODE = #{code}</if>
+            <if test="codeDescription != null">AND CODE_DESCRIPTION = #{codeDescription}</if>
+            <if test="isActive != null">AND IS_ACTIVE = #{isActive}</if>
+            <if test="expirationDate != null">AND EXPIRATION_DATE = #{expirationDate}</if>
+            <if test="createTime != null">AND CREATE_TIME = #{createTime}</if>
+            <if test="createUser != null">AND CREATE_USER = #{createUser}</if>
+            <if test="updateTime != null">AND UPDATE_TIME = #{updateTime}</if>
+            <if test="updateUser != null">AND UPDATE_USER = #{updateUser}</if>
+        </where>
+    </select>
+
+    <resultMap id="invitationCodeResultMap" type="com.crater.craterlogin.bean.entity.db.InvitationCode">
+        <id property="code" column="CODE"/>
+        <result property="codeDescription" column="CODE_DESCRIPTION"/>
+        <result property="isActive" column="IS_ACTIVE"/>
+        <result property="expirationDate" column="EXPIRATION_DATE"/>
+        <result property="createTime" column="CREATE_TIME"/>
+        <result property="createUser" column="CREATE_USER"/>
+        <result property="updateTime" column="UPDATE_TIME"/>
+        <result property="updateUser" column="UPDATE_USER"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.crater.craterlogin.bean.entity.db.InvitationCode">
+        INSERT INTO INVITATION_CODE(CODE, CODE_DESCRIPTION, IS_ACTIVE, EXPIRATION_DATE, CREATE_TIME, CREATE_USER, UPDATE_TIME, UPDATE_USER)
+        VALUES (#{code}, #{codeDescription}, #{isActive}, #{expirationDate}, #{createTime}, #{createUser}, #{updateTime}, #{updateUser})
+    </insert>
+
+    <update id="update" parameterType="com.crater.craterlogin.bean.entity.db.InvitationCode">
+        UPDATE INVITATION_CODE
+        <set>
+            <if test="codeDescription != null">CODE_DESCRIPTION = #{codeDescription},</if>
+            <if test="isActive != null">IS_ACTIVE = #{isActive},</if>
+            <if test="expirationDate != null">EXPIRATION_DATE = #{expirationDate},</if>
+            <if test="createTime != null">CREATE_TIME = #{createTime},</if>
+            <if test="createUser != null">CREATE_USER = #{createUser},</if>
+            <if test="updateTime != null">UPDATE_TIME = #{updateTime},</if>
+            <if test="updateUser != null">UPDATE_USER = #{updateUser},</if>
+        </set>
+        WHERE CODE = #{code}
+    </update>
+
+    <delete id="delete" parameterType="com.crater.craterlogin.bean.entity.db.InvitationCode">
+        DELETE FROM INVITATION_CODE
+        WHERE CODE = #{code}
+    </delete>
+</mapper>

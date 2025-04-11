@@ -1,0 +1,27 @@
+### 使用有效邀请码测试获取邀请码
+GET http://127.0.0.1:8080/api/getInvitationCode?code=TEST
+Accept: application/json
+
+### 使用過期的邀請碼
+GET http://127.0.0.1:8080/api/getInvitationCode?code=TEST2
+Accept: application/json
+
+### 使用被取消的邀請碼
+GET http://127.0.0.1:8080/api/getInvitationCode?code=TEST3
+Accept: application/json
+
+### 使用空邀请码测试获取邀请码
+GET http://127.0.0.1:8080/api/getInvitationCode?code=
+Accept: application/json
+
+### 使用不存在的邀请码测试获取邀请码
+GET http://127.0.0.1:8080/api/getInvitationCode?code=nonExistentCode
+Accept: application/json
+
+### 不提供邀请码参数测试获取邀请码
+GET http://127.0.0.1:8080/api/getInvitationCode
+Accept: application/json
+
+### 使用API前缀测试获取邀请码（如需要）
+GET http://127.0.0.1:8080/api/api/getInvitationCode?code=validCode
+Accept: application/json
