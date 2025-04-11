@@ -1,0 +1,44 @@
+### Test login with valid credentials
+POST http://127.0.0.1:8080/api/validateController/login
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username": "string",
+  "password": "string"
+}
+
+### Test login with missing username (should fail validation)
+POST http://localhost:8080/validateController/login
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username": "",
+  "password": "testPassword"
+}
+
+### Test login with missing password (should fail validation)
+POST http://localhost:8080/validateController/login
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username": "testUser",
+  "password": ""
+}
+
+### Test login with both username and password missing (should fail validation)
+POST http://localhost:8080/validateController/login
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username": "",
+  "password": ""
+}
+
+### Test login with null request body (should fail validation)
+POST http://localhost:8080/validateController/login
+Content-Type: application/json
+Accept: application/json

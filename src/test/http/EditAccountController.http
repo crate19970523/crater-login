@@ -1,0 +1,40 @@
+### Test adding an account with valid data
+POST http://127.0.0.1:8080/api/editAccountController/add
+Content-Type: application/json
+
+{
+  "userName": "testUser",
+  "password": "testPassword",
+  "email": "test@example.com"
+}
+
+
+### Test adding an account with missing userName (should fail validation)
+POST http://localhost:8080/editAccountController/add
+Content-Type: application/json
+
+{
+  "userName": "",
+  "password": "testPassword",
+  "email": "test@example.com"
+}
+
+### Test adding an account with missing password (should fail validation)
+POST http://localhost:8080/editAccountController/add
+Content-Type: application/json
+
+{
+  "userName": "testUser",
+  "password": "",
+  "email": "test@example.com"
+}
+
+### Test adding an account without email (should succeed as email is not required)
+POST http://localhost:8080/editAccountController/add
+Content-Type: application/json
+
+{
+  "userName": "testUser",
+  "password": "testPassword",
+  "email": null
+}
