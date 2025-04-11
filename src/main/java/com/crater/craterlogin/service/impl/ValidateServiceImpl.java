@@ -38,14 +38,8 @@ public class ValidateServiceImpl implements ValidateService {
 
     private Optional<UserData> queryUserData(String username) {
         try {
-            Optional<UserData> result;
             var userQueryResult = userDataDao.select(new UserData().setUserName(username).setActive(true));
-            if (userQueryResult.isEmpty()) {
-                result = Optional.empty();
-            } else {
-                result = Optional.of(userQueryResult.getFirst());
-            }
-            return result;
+            return userQueryResult.isEmpty() ? Optional.empty() : Optional.of(userQueryResult.getFirst());
         } catch (Exception e) {
             throw new DbException("query user data failed", e);
         }

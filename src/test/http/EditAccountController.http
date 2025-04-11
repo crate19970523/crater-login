@@ -35,6 +35,5 @@ Content-Type: application/json
 
 {
   "userName": "testUser",
-  "password": "testPassword",
-  "email": null
+  "password": "testPassword"
 }
